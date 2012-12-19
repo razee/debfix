@@ -1,0 +1,26 @@
+# For complete documentation of this file, please see Geany's main documentation
+[styling]
+# foreground;background;bold;italic
+default=default
+comment=comment
+tag=type
+class=default
+pseudoclass=extra
+unknown_pseudoclass=error
+unknown_identifier=error
+operator=operator
+identifier=keyword
+doublestring=string
+singlestring=string
+attribute=keyword2
+value=string
+id=number
+identifier2=keyword
+important=error
+directive=preprocessor
+identifier3=keyword2
+pseudoelement=extra
+extended_identifier=extra
+extended_pseudoclass=extra
+extended_pseudoelement=extra
+media=default

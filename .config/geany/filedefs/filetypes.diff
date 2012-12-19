@@ -1,0 +1,12 @@
+# For complete documentation of this file, please see Geany's main documentation
+[styling]
+# foreground;background;bold;italic
+default=default
+comment=commentdoc
+command=keyword
+header=extra
+position=extra
+deleted=error
+added=comment
+changed=string
+

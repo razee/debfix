@@ -1,0 +1,13 @@
+# For complete documentation of this file, please see Geany's main documentation
+[styling]
+# foreground;background;bold;italic
+default=default
+comment=comment
+identifier=keyword2
+keyword=keyword
+number=number
+reference=extra
+document=default
+text=string
+error=error
+operator=operator

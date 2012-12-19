@@ -1,0 +1,20 @@
+# For complete documentation of this file, please see Geany's main documentation
+
+[styling]
+# foreground;background;bold;italic
+default=default
+command=number
+tag=keyword
+math=string
+comment=comment
+
+[build-menu]
+FT_01_LB=LaTeX -> _PDF
+FT_01_CM=pdflatex -shell-escape --file-line-error-style "%f"
+FT_01_WD=
+FT_00_LB=LaTeX -> _DVI
+FT_00_CM=latex --file-line-error-style "%f"
+FT_00_WD=
+FT_02_LB=PDF via DVI
+FT_02_CM=latex --file-line-error-style "%f" && dvipdf "%e.dvi"
+FT_02_WD=
