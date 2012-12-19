@@ -1,0 +1,25 @@
+[Configuration]
+LastActiveMode=THUNAR_RENAMER_MODE_NAME
+LastActiveRenamer=TagRenamer
+
+[ThunarSbrRemoveRenamer]
+EndOffsetMode=THUNAR_SBR_OFFSET_MODE_LEFT
+StartOffset=0
+EndOffset=7
+StartOffsetMode=THUNAR_SBR_OFFSET_MODE_LEFT
+
+[ThunarSbrCaseRenamer]
+Mode=THUNAR_SBR_CASE_RENAMER_MODE_LOWER
+
+[ThunarSbrReplaceRenamer]
+Regexp=FALSE
+Replacement=_
+CaseSensitive=FALSE
+Pattern=\ 
+
+[TagRenamer]
+Lowercase=FALSE
+ReplaceSpaces=FALSE
+Format=TAG_RENAMER_FORMAT_CUSTOM
+Text=%a - %b - %t
+
