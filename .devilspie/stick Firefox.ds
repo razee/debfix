@@ -1,0 +1,11 @@
+; generated_rule stick Firefox
+( if 
+( begin 
+( is ( application_name ) "Firefox" )
+) 
+( begin 
+( pin )
+( stick )
+( println "match" )
+)
+)

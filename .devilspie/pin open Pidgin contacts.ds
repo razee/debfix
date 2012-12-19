@@ -1,0 +1,10 @@
+; generated_rule pin open Pidgin contacts
+( if 
+( begin 
+( is ( application_name ) "Pidgin" )
+) 
+( begin 
+( pin )
+( println "match" )
+)
+)

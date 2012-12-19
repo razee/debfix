@@ -1,0 +1,13 @@
+; generated_rule Hide Audacious from taskbar
+( if 
+( begin 
+( contains ( window_name ) "Audacious" )
+) 
+( begin 
+( pin )
+( above )
+( skip_tasklist )
+( stick )
+( println "match" )
+)
+)

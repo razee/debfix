@@ -1,0 +1,11 @@
+; generated_rule Minimal Skype calls
+( if 
+( begin 
+( contains ( window_name ) "Call with " )
+) 
+( begin 
+( above )
+( geometry "100x100+99+245" )
+( println "match" )
+)
+)

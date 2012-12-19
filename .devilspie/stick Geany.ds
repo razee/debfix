@@ -1,0 +1,11 @@
+; generated_rule stick Geany
+( if 
+( begin 
+( matches ( window_name ) "Geany" )
+) 
+( begin 
+( pin )
+( stick )
+( println "match" )
+)
+)
