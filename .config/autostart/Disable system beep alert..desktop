@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=0.9.4
+Type=Application
+Name=Disable system beep alert.
+Comment=Disable system beep (xkbbell).
+Exec=xset -b
+StartupNotify=false
+Terminal=false
+Hidden=false
+

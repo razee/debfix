@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<toolbars version="1.0">
+  <toolbar name="DefaultToolBar" hidden="false" editable="true">
+    <toolitem name="PageSelector"/>
+    <separator/>
+    <toolitem name="ViewZoom"/>
+    <separator/>
+    <toolitem name="Navigation"/>
+    <separator/>
+    <toolitem name="ViewInvertedColors"/>
+    <toolitem name="ViewAutoscroll"/>
+  </toolbar>
+</toolbars>
