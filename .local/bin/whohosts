@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ x"$#" != "x1" ]; then
+  echo "Usage: whohosts DOMAIN"
+  exit 1
+fi
+
+domain=$1
+ipaddr=`dig a $domain | grep -A1 'ANSWER SECTION' | grep -oP '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'`
+whois -H $ipaddr | grep -vP '^#|^$'

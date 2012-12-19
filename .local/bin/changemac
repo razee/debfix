@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ "$#" != "2" ]; then
+  echo "Usage: changemac interface newmac"
+  exit 1
+fi
+
+IF=$1
+MAC=$2
+
+sudo ifconfig $IF down
+sudo ifconfig $IF hw ether $MAC
+sudo ifconfig $IF up

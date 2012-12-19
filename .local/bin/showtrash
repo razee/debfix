@@ -1,0 +1,2 @@
+#!/bin/bash
+ls -cltr ~/.local/share/Trash/files

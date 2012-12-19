@@ -1,0 +1,2 @@
+#!/bin/sh
+wine ~/.wine/programs/ASP32/Asp32.exe

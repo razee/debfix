@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ "$#" != "1" ]; then
+  echo "Usage: alert SECONDS MESSAGE"
+  exit 1
+fi
+
+sleep $1 && zenity --warning --text="$2"
