@@ -17,13 +17,13 @@ else
 fi
 
 alias whois='whois -H'
-alias more='less -r'
-alias ls='ls --color=auto -F'
+alias more='less -R'
+alias ls='ls --color=always -F'
 alias la='ls -AlF'
 alias ll='ls -lF'
-alias grep='grep --color=auto'
+alias grep='grep --color=always'
 alias b64='base64'
 alias b64d='base64 -d'
 
 export PAGER=less
-export LESS=-r
+export LESS=-R
