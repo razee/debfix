@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<channel name="xfce4-desktop" version="1.0">
+  <property name="desktop-icons" type="empty">
+    <property name="style" type="empty"/>
+    <property name="file-icons" type="empty">
+      <property name="show-home" type="bool" value="true"/>
+      <property name="show-filesystem" type="bool" value="false"/>
+      <property name="show-removable" type="empty"/>
+      <property name="show-trash" type="bool" value="false"/>
+    </property>
+    <property name="icon-size" type="uint" value="32"/>
+    <property name="use-custom-font-size" type="bool" value="false"/>
+    <property name="font-size" type="double" value="8.000000"/>
+  </property>
+</channel>

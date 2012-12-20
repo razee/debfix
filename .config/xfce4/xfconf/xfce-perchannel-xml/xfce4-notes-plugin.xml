@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<channel name="xfce4-notes-plugin" version="1.0">
+  <property name="general" type="empty">
+    <property name="hide_windows_from_taskbar" type="bool" value="true"/>
+    <property name="hide_arrow_button" type="bool" value="false"/>
+  </property>
+  <property name="new_window" type="empty">
+    <property name="width" type="int" value="375"/>
+    <property name="height" type="int" value="430"/>
+    <property name="always_on_top" type="bool" value="true"/>
+    <property name="sticky" type="bool" value="true"/>
+    <property name="show_resize_grip" type="bool" value="true"/>
+    <property name="show_tabs" type="bool" value="true"/>
+    <property name="transparency" type="int" value="10"/>
+    <property name="use_font" type="bool" value="false"/>
+    <property name="font_description" type="string" value="Sans 10"/>
+  </property>
+</channel>
