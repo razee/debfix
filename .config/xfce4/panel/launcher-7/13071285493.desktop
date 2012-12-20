@@ -1,0 +1,34 @@
+
+[Desktop Entry]
+Version=1.0
+Name=Chromium Web Browser
+GenericName=Web Browser
+Comment=Access the Internet
+Exec=/usr/bin/chromium %U
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=chromium
+Categories=Network;WebBrowser;
+MimeType=text/html;text/xml;application/xhtml_xml;x-scheme-handler/http;x-scheme-handler/https;
+StartupWMClass=Chromium-browser
+StartupNotify=true
+X-Ayatana-Desktop-Shortcuts=NewWindow;Incognito;TempProfile
+X-XFCE-Source=file:///usr/share/applications/chromium-browser.desktop
+
+Path=
+
+[NewWindow Shortcut Group]
+Name=Open a New Window
+Exec=/usr/bin/chromium-browser
+TargetEnvironment=Unity
+
+[Incognito Shortcut Group]
+Name=Open a New Window in incognito mode
+Exec=/usr/bin/chromium-browser --incognito
+TargetEnvironment=Unity
+
+[TempProfile Shortcut Group]
+Name=Open a New Window with a temporary profile
+Exec=/usr/bin/chromium-browser --temp-profile
+TargetEnvironment=Unity
