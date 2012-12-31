@@ -1,0 +1,80 @@
+/*
+ * Edit this file and copy it as userChrome.css into your
+ * profile-directory/chrome/
+
+/*
+ * This file can be used to customize the look of Mozilla's user interface
+ * You should consider using !important on rules which you want to
+ * override default settings.
+ */
+
+/*
+ * Do not remove the @namespace line -- it's required for correct functioning
+ */
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"); /* set default namespace to XUL */
+
+/*
+ * For more examples see http://www.mozilla.org/unix/customizing.html
+ */
+
+/* Tree Style Tab customization --- OLD
+tabbrowser tab .tab-icon {
+    height: 16px !important;
+}
+tabbrowser tab {
+  height: 13px !important;
+  min-height: 13px !important;
+	font-size: 9px;
+}
+.tabs-newtab-button {display: none}
+*/
+
+
+.tabbrowser-tab {
+  height: 12px !important;
+  font-size: 9px !important;
+}
+.tabbrowser-tab .tab-text {
+  margin-top: -7px !important;
+}
+.tabbrowser-tab .tab-icon-image,
+.tabbrowser-tab .tab-close-button {
+  margin-top: -9px !important;
+}
+
+#addonbar-closebutton { display:none; }
+
+#wrapper-search-container,
+#search-container,
+#searchbar {
+  width: 450px !important;
+  min-width: 30% !important;
+  max-width: 450px !important;
+}
+
+/* Purge context menu of shit! (http://kb.mozillazine.org/Firefox_:_Tips_:_Customize_context_menu#Tweaking_userChrome.css) mine */
+#context-openlink,
+#context-bookmarklink,
+#context-sendlink,
+#context-sendimage,
+#context-setWallpaper,
+#context-setDesktopBackground,
+#context-blockimage,
+#context-forward,
+#context-reload,
+#context-stop,
+#context-sep-stop,
+#context-bookmarkpage,
+#context-sendpage,
+#context-sep-viewbgimage,
+#context-delete,
+#context-selectall,
+/*#context-sep-selectall, test without*/
+#context-keywordfield,
+#context-sep-bidi,
+#context-bidi-text-direction-toggle,
+#context-bidi-page-direction-toggle,
+#gtbMoreSearchTypesMenuItem, /* google toolbars' screwup (menu[label="More search types"]) */
+#gtbPageInfoContextMenu, /* -||- (menu[label="Page info"]) */
+#gtbContextMenuSeparator /* -||- */
+ { display:none !important; }

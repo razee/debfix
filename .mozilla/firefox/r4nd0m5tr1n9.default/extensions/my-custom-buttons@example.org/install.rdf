@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+
+  <Description
+    about="urn:mozilla:install-manifest"
+
+    em:name="My Custom Button"
+    em:description="My custom toolbar button"
+    em:creator="Kernc"
+
+    em:id="my-custom-buttons@example.org"
+    em:version="1.0"
+    em:homepageURL="http://developer.mozilla.org/en/docs/Custom_Toolbar_Button"
+
+    em:iconURL="chrome://custombutton/content/icon.png" >
+
+    <em:targetApplication><!-- Firefox -->
+      <Description
+        em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+        em:minVersion="1.4"
+        em:maxVersion="99" />
+    </em:targetApplication>
+
+    <em:file>
+      <Description
+        about="urn:mozilla:extension:custombutton"
+        em:package="content/custombutton/" />
+    </em:file>
+
+  </Description>
+
+</RDF>
