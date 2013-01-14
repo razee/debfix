@@ -1,7 +1,7 @@
 ; generated_rule stick Firefox
 ( if 
 ( begin 
-( is ( application_name ) "Firefox" )
+( or ( is ( application_name ) "Firefox" ) ( is ( application_name ) "Iceweasel" ) )
 ) 
 ( begin 
 ( pin )
