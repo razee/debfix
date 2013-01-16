@@ -64,16 +64,17 @@ def do_copy_debian_sources_list():
 
 def do_copy_synaptic_config():
   """Create friendly Synaptic (package manager) settings"""
-  if run('[ ! -d /root/.synaptic ] && mkdir /root/.synaptic ; '
+  if run('[ ! -d /root/.synaptic ] && mkdir -v /root/.synaptic ; '
           '[ -f /root/.synaptic/synaptic.conf ] && mv -v /root/.synaptic/synaptic.conf /root/.synaptic/synaptic.conf~ ; '
-          'cp {}root_.synaptic_synaptic.conf /root/.synaptic/synaptic.conf'):
+          'cp {}root_.synaptic_synaptic.conf /root/.synaptic/synaptic.conf'.format(data_dir)):
     log.info('Created /root/.synaptic/synaptic.conf')
   else:
     log.warn('Failed to move root_.synaptic_synaptic.conf to /root/.synaptic/synaptic.conf')
 
 def do_copy_xorg_synaptics_config():
   """Set touchpad tap-to-click and edge scrolling"""
-  if run('cp -v {}etc_X11_xorg.conf.d_50-synaptics.conf /etc/X11/xorg.conf.d/50-synaptics.conf'.format(data_dir)):
+  if run('[ ! -d /etc/X11/xorg.conf.d ] && mkdir -v /etc/X11/xorg.conf.d ; '
+         'cp -v {}etc_X11_xorg.conf.d_50-synaptics.conf /etc/X11/xorg.conf.d/50-synaptics.conf'.format(data_dir)):
     log.info('Created /etc/X11/xorg.conf.d/50-synaptics.conf')
   else:
     log.warn('Failed to copy 50-synaptics.conf to /etc/X11/xorg.conf.d')
@@ -86,16 +87,16 @@ Set 'noatime' flag on all mounts defined in /etc/fstab"""
   newfstab = []
   with open('/etc/fstab') as fstab:
     for line in fstab:
-      match = re.search('^([^#\s]+)\s([^#\s]+)\s([^#\s]+)\s([^#\s]+)\s([0-9]+)\s([0-9]+[.]*)', line, re.DOTALL)
+      match = re.search('^([^#\s]+)\s+([^#\s]+)\s+([^#\s]+)\s+([^#\s]+)\s+([0-9]+)\s+([0-9]+[.]*)', line, re.DOTALL)
       if not match:  # no match, so a comment line
         newfstab.append(line)
         continue
       line = list(match.groups())
-      line[3] += ',noatime'
+      if 'noatime' not in line[3]: line[3] += ',noatime'
       newfstab.append('\t'.join(line) + '\n')
   with open('/etc/fstab', 'w') as fstab:
     fstab.write(''.join(newfstab) + '\n')
-  log.info("'noatime' flag added to all mounts in /etc/fstab")
+  log.info("'noatime' flag added to ALL mounts in /etc/fstab")
 
 def do_add_tmpfs_mount_to_fstab():
   """Firefox may store partly downloaded files/YouTube videos to /tmp.
@@ -121,7 +122,7 @@ the swap partition (from /etc/fstab, or result of `blkid`) in order for resume
 from hibernation to work.
 Ensure UUIDs match"""
   with open('/etc/fstab') as fstab:
-    try: uuid = re.search('^([^#\s]+)\s[^#\s]+\sswap\s[^#\s]+\s[0-9]+\s[0-9]+', fstab.read(), re.MULTILINE).groups()[0]
+    try: uuid = re.search('^([^#\s]+)\s+[^#\s]+\s+swap\s+[^#\s]+\s+[0-9]+\s+[0-9]+', fstab.read(), re.MULTILINE).groups()[0]
     except (AttributeError, IndexError): uuid = ''
   cmd = ('echo "RESUME=' + uuid + '" > /etc/initramfs-tools/conf.d/resume '
          '&& update-initramfs -u -k all')
@@ -132,7 +133,10 @@ Ensure UUIDs match"""
 
 def do_disable_pc_speaker():
   """Disable annoying PC-speaker (bell)"""
-  run('echo "blacklist pcspkr" >> /etc/modprobe.d/blacklist.conf')
+  if run('echo "blacklist pcspkr" >> /etc/modprobe.d/blacklist.conf'):
+    log.info('pcspkr blacklisted in /etc/modprobe.d/blacklist.conf')
+  else:
+    log.warn('Failed to blacklist pcspkr module')
 
 def do_improve_desktop_system_performance():
   """Improve desktop system performance by various kernel (sysctl) tweaks"""
@@ -172,12 +176,14 @@ def _apt_install_section(section, packages):
     run('echo "deb http://mozilla.debian.net/ experimental iceweasel-esr" > /etc/apt/sources.list.d/mozilla.list')
     run('apt-get -q update')
     run('apt-get -y -q --allow-unauthenticated install pkg-mozilla-archive-keyring')
+    run('apt-get -q update')
     run('aptitude -y -q install -t experimental ' + packages)
+    # TODO: add experimental iceweasel pin
     return
-  if section == 'multimedia':
-    run('apt-get -y -q --allow-unauthenticated install deb-multimedia-keyring')
+  
   # MAIN
   run('aptitude -y -q install ' + packages)
+  
   # POST
   if section == 'virtualbox':
     version = re.search('^[0-9]+\.[0-9]+\.[0-9]+', run('VBoxManage -v', pipe=True)).group()
@@ -186,13 +192,14 @@ def _apt_install_section(section, packages):
         '&& VBoxManage extpack install /tmp/Oracle_VM_VirtualBox_Extension_Pack-{version}.vbox-extpack'.format(version=version))
   
 def do_install_packages():
-  """Install or remove packages"""
+  """Install or remove packages (as per debfix/debfix-packages.conf"""
   from ConfigParser import RawConfigParser
   config = RawConfigParser(allow_no_value=True)
   config.read(data_dir + 'debfix-packages.conf')
   sections = sorted([s for s in config.sections() if s != 'remove'])
-  sections.append('remove')
-  run('apt-get -y -q --allow-unauthenticated install aptitude debian-archive-keyring')
+  sections.insert(0, 'remove')
+  run('apt-get -y -q update')
+  run('apt-get -y -q --allow-unauthenticated install aptitude debian-archive-keyring deb-multimedia-keyring')
   run('apt-get -y -q update')
   for section in sections:
     question = "{} packages from '{}' section".format('Install' if section != 'remove' else 'Remove', section)
