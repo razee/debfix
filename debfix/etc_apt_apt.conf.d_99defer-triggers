@@ -1,9 +1,10 @@
-APT::Cache-Limit "100000000";
+// Created by debfix.py script
+
+APT::Cache-Limit "0";
 APT::Solver::Strict-Pinning "false";
 APT::Get::Fix-Broken "true";
+
 APT::Remove-Depends "true";
-// Defer triggers (Processing triggers for ...)
-// From http://raphaelhertzog.com/2011/05/30/trying-to-make-dpkg-triggers-more-useful-and-less-painful/
 DPkg::NoTriggers "true";
 PackageManager::Configure "smart";
 DPkg::ConfigurePending "true";
