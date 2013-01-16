@@ -10,6 +10,7 @@ import re
 
 data_dir = 'debfix/'  # where files are, except dot-files
 log = logging.getLogger()
+assume_yes = False
 
 def _init_logging():
   log.setLevel(logging.DEBUG)
