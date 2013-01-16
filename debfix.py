@@ -227,9 +227,9 @@ def do_install_skype():
     log.warn('Failed to install Skype')
 
 def main():
-  #~ if os.getuid() != 0:
-    #~ print('This script must be run as root.')
-    #~ exit()
+  if os.getuid() != 0:
+    print('This script must be run as root.')
+    exit()
   
   parser = ArgumentParser(description="Fix (and optimize) Debian with an interactive script that helps you set up your mom's PC.",
                           epilog='Source: http://github.com/kernc/linux-home',
