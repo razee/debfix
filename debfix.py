@@ -241,7 +241,7 @@ def main():
   
   _init_logging()
   for fname, func in sorted(globals().items()):
-    if fname.startswith('do_') and fname.startswith('do_install') and user_choice(func.__doc__):
+    if fname.startswith('do_') and user_choice(func.__doc__):
       func()
   print('All done.')
 
