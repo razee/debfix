@@ -51,8 +51,9 @@ def do_copy_apt_config_no_triggers():
 def do_copy_debian_sources_list():
   """Set 'perfect' Debian /etc/apt/sources.list"""
   release = 'wheezy'
-  release = raw_input('Debian release to track (stable/sid/...) [{}]: '
-                      .format(release)).lower() or release
+  if not assume_yes:
+    release = raw_input('Debian release to track (stable/sid/...) [{}]: '
+                        .format(release)).lower() or release
   cmd = ('mv -v /etc/apt/sources.list /etc/apt/sources.list~debfix '
          '&& cp -v {path}etc_apt_sources.list /etc/apt/sources.list '
          '&& echo "deb http://www.deb-multimedia.org wheezy main non-free" >> /etc/apt/sources.list.d/deb-multimedia.list'
