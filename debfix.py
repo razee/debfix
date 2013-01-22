@@ -187,7 +187,7 @@ def _apt_install_section(section, packages):
   
   # POST
   if section == 'virtualbox':
-    version = re.search('^[0-9]+\.[0-9]+\.[0-9]+', run('VBoxManage -v', pipe=True)).group()
+    version = re.search('^[0-9]+\.[0-9]+\.[0-9]+', run('VBoxManage -v', pipe=True).split('\n')[-2]).group()
     run('cd /tmp '
         '&& wget http://download.virtualbox.org/virtualbox/{version}/Oracle_VM_VirtualBox_Extension_Pack-{version}.vbox-extpack '
         '&& VBoxManage extpack install /tmp/Oracle_VM_VirtualBox_Extension_Pack-{version}.vbox-extpack'.format(version=version))
