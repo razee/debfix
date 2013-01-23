@@ -167,41 +167,37 @@ def do_improve_desktop_system_performance():
   else:
     log.warn('Failed to create /etc/sysctl.d/debfix-desktop-performance.conf')
 
-
-def _apt_install_section(section, packages):
+def _apt_install_packages(marked):
   # PRE
-  if section == 'remove':
-    run('aptitude -y -q purge ' + packages)
-    return
-  if section == 'mozilla':
-    run('echo "deb http://mozilla.debian.net/ experimental iceweasel-esr" > /etc/apt/sources.list.d/mozilla.list')
+  if 'mozilla' in marked['sections']:
+    run('[ ! -d /etc/apt/sources.list.d ] && mkdir /etc/apt/sources.list.d ; '
+        'cp -v {}etc_apt_sources.list.d_experimental-iceweasel-esr.list /etc/apt/sources.list.d/experimental-iceweasel-esr.list'.format(data_dir))
     run('apt-get -q update')
     run('apt-get -y -q --allow-unauthenticated install pkg-mozilla-archive-keyring')
     run('[ ! -d /etc/apt/preferences.d ] && mkdir /etc/apt/preferences.d ; '
-        'cp -v {}etc_apt_preferences.d_experimental-iceweasel.pref /etc/apt/preferences.d/experimental-iceweasel.pref'.format(data_dir))
+        'cp -v {}etc_apt_preferences.d_experimental-iceweasel-esr.pref /etc/apt/preferences.d/experimental-iceweasel-esr.pref'.format(data_dir))
     run('apt-get -q update')
-    run('aptitude -y -q install -t experimental ' + packages)
-    return
-  
-  # MAIN
-  run('aptitude -y -q install ' + packages)
-  
+  # INSTALL
+  if marked['install']: run('aptitude -y -q install ' + marked['install'])
+  # REMOVE
+  if marked['remove']: run('aptitude -y -q purge ' + marked['remove'])
   # POST
-  if section == 'virtualbox':
+  if 'virtualbox' in marked['sections']:
     version = re.search('^[0-9]+\.[0-9]+\.[0-9]+', run('VBoxManage -v', pipe=True).split('\n')[-2]).group()
     run('cd /tmp '
         '&& wget http://download.virtualbox.org/virtualbox/{version}/Oracle_VM_VirtualBox_Extension_Pack-{version}.vbox-extpack '
         '&& VBoxManage extpack install /tmp/Oracle_VM_VirtualBox_Extension_Pack-{version}.vbox-extpack'.format(version=version))
-  
+
 def do_install_packages():
   """Install or remove packages (as per debfix/debfix-packages.conf"""
   from ConfigParser import RawConfigParser
   config = RawConfigParser(allow_no_value=True)
   config.read(data_dir + 'debfix-packages.conf')
-  sections = sorted([s for s in config.sections() if s != 'remove']) + ['remove']
+  sections = config.sections()
   run('apt-get -y -q update')
   run('apt-get -y -q --allow-unauthenticated install aptitude debian-archive-keyring deb-multimedia-keyring')
   run('apt-get -y -q update')
+  marked = {'install':'', 'remove':'', 'sections':''}
   for section in sections:
     question = "{} packages from '{}' section".format('Install' if section != 'remove' else 'Remove', section)
     packages = ' '.join(i[0] for i in config.items(section))
@@ -211,8 +207,14 @@ def do_install_packages():
         log.info("Section '{}' contains packages: {}".format(section, packages))
         continue
       if choice:
-        _apt_install_section(section, packages)
+        marked['sections'] += section + ' '
+        if section == 'remove':
+          marked['remove'] += packages + ' '
+        else:
+          marked['install'] += packages + ' '
       break
+  if user_choice('Install: {install}\nRemove: {remove}\nApply changes'.format(marked)):
+    _apt_install_packages(marked)
   if user_choice('Upgrade all upgradable packages'):
     run('aptitude -y -q full-upgrade')
   run('aptitude -y -q clean')
