@@ -213,7 +213,7 @@ def do_install_packages():
         else:
           marked['install'] += packages + ' '
       break
-  if user_choice('Install: {install}\nRemove: {remove}\nApply changes'.format(marked)):
+  if user_choice('Install: {install}\nRemove: {remove}\nApply changes'.format(**marked)):
     _apt_install_packages(marked)
   if user_choice('Upgrade all upgradable packages'):
     run('aptitude -y -q full-upgrade')
