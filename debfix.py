@@ -198,8 +198,7 @@ def do_install_packages():
   from ConfigParser import RawConfigParser
   config = RawConfigParser(allow_no_value=True)
   config.read(data_dir + 'debfix-packages.conf')
-  sections = sorted([s for s in config.sections() if s != 'remove'])
-  sections.insert(0, 'remove')
+  sections = sorted([s for s in config.sections() if s != 'remove']) + ['remove']
   run('apt-get -y -q update')
   run('apt-get -y -q --allow-unauthenticated install aptitude debian-archive-keyring deb-multimedia-keyring')
   run('apt-get -y -q update')
