@@ -241,11 +241,11 @@ def do_install_skype():
 
 def main():
   if os.getuid() != 0:
-    print('This script must be run as root.')
+    print('This script should be run as root.')
     exit()
   
   parser = ArgumentParser(description="Fix (and optimize) Debian with an interactive script that helps you set up your mom's PC.",
-                          epilog='Source: http://github.com/kernc/linux-home',
+                          epilog='Source: http://github.com/kernc/debfix',
                           prog='./debfix.py')
   parser.add_argument('-y', '--assume-yes', action='store_true',
                      help='assume "yes" as answer to all prompts')
