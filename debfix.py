@@ -56,8 +56,8 @@ def do_copy_debian_sources_list():
                         .format(release)).lower() or release
   cmd = ('mv -v /etc/apt/sources.list /etc/apt/sources.list~debfix '
          '&& cp -v {path}etc_apt_sources.list /etc/apt/sources.list '
-         '&& echo "deb http://www.deb-multimedia.org wheezy main non-free" >> /etc/apt/sources.list.d/deb-multimedia.list'
-         '&& sed -i "s/wheezy/{rel}/g" /etc/apt/sources.list /etc/apt/sources.list.d/deb-multimedia.list'.format(path=data_dir, rel=release))
+         '&& echo "deb http://www.deb-multimedia.org {rel} main non-free" >> /etc/apt/sources.list.d/deb-multimedia.list'
+         '&& sed -i "s/wheezy/{rel}/g" /etc/apt/sources.list'.format(path=data_dir, rel=release))
   if run(cmd):
     log.info('Created /etc/apt/sources.list (old backed-up as sources.list~debfix) and /etc/apt/sources.list.d/deb-multimedia.list')
   else:
@@ -177,9 +177,10 @@ def _apt_install_section(section, packages):
     run('echo "deb http://mozilla.debian.net/ experimental iceweasel-esr" > /etc/apt/sources.list.d/mozilla.list')
     run('apt-get -q update')
     run('apt-get -y -q --allow-unauthenticated install pkg-mozilla-archive-keyring')
+    run('[ ! -d /etc/apt/preferences.d ] && mkdir /etc/apt/preferences.d ; '
+        'cp -v {}etc_apt_preferences.d_experimental-iceweasel.pref /etc/apt/preferences.d/experimental-iceweasel.pref'.format(data_dir))
     run('apt-get -q update')
     run('aptitude -y -q install -t experimental ' + packages)
-    # TODO: add experimental iceweasel pin
     return
   
   # MAIN
