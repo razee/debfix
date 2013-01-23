@@ -223,7 +223,7 @@ def do_install_packages():
 def do_install_teamviewer():
   """Install TeamViewer (remote support software)"""
   arch = '_x64' if int(run('getconf LONG_BIT', pipe=True)) == 64 else ''
-  if run('cd /tmp '
+  if run('cd /tmp '   # TODO: please recommend how to avoid 'symlink attack' vector in the lines below
          '&& wget -O teamviewer_linux.deb http://www.teamviewer.com/download/teamviewer_linux{}.deb'
          '&& gdebi -n -q teamviewer_linux.deb'.format(arch)):
     log.info('TeamViewer installed')
@@ -232,7 +232,7 @@ def do_install_teamviewer():
 
 def do_install_skype():
   """Install Skype"""
-  if run('cd /tmp '
+  if run('cd /tmp '   # TODO: see teamviewer TODO
          '&& wget -O skype_linux.deb http://www.skype.com/go/getskype-linux-deb-32'
          '&& gdebi -n -q skype_linux.deb'):
     log.info('Skype installed')
