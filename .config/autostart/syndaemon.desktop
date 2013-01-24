@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=0.9.4
+Type=Application
+Name=syndaemon
+Comment=Disable touchpad tapping/scrolling when typing.
+Exec=syndaemon -t -i 1 -k -d
+StartupNotify=false
+Terminal=false
+Hidden=false
+
