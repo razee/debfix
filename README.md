@@ -10,7 +10,7 @@ Debian-based) into my mom's favorite OS.
 
 It it comprised of two parts:
 * [dot-files](https://github.com/kernc/debfix#about-dot-files)
-* [debfix.py script](https://github.com/kernc/debfix#debfix system tweaks)
+* [debfix.py script](https://github.com/kernc/debfix#debfix-system-tweaks)
 
 
 ## About dot-files
@@ -64,7 +64,7 @@ Files and directories starting with `.` thus hold:
 ## Debfix System Tweaks
 
 With the help of 'common' files in `debfix` directory, `debfix.py` script
-prompts the user to:
+sequentially prompts the user to:
 * (performance)
     * [defer all DPkg triggers](http://raphaelhertzog.com/2011/05/30/trying-to-make-dpkg-triggers-more-useful-and-less-painful/)
     * set 'noatime' flag on all `/etc/fstab` mounts
@@ -78,7 +78,8 @@ prompts the user to:
     * fix `/etc/initramfs-tools/conf.d/resume` so that resume from hibernation works
     * disable (blacklist) PC-speaker
     * install 'sections' of packages (defined in [debfix/debfix-packages.conf](https://github.com/kernc/debfix/blob/master/debfix/debfix-packages.conf))
-    * install appropriate VirtualBox Extension Pack
+        * install appropriate VirtualBox Extension Pack
+        * track and pin the latest [iceweasel-esr](http://www.mozilla.org/en-US/firefox/organizations/) from mozilla.debian.org
     * install latest TeamViewer
     * install latest Skype
     
