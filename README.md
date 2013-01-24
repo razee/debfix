@@ -1,5 +1,5 @@
-debfix
-======
+# debfix - dotfiles and tweaks
+
 ## Tweaks for Debian (or derivative) GNU/Linux distribution
 
 This repository consists mostly of dot-files for a swell Xfce-based experience
@@ -9,8 +9,31 @@ contain all that I need to turn a vanilla install (of mainly Debian or
 Debian-based) into my mom's favorite OS.
 
 It it comprised of two parts:
-* [dot-files](https://github.com/kernc/debfix#about-dot-files)
-* [debfix.py script](https://github.com/kernc/debfix#debfix-system-tweaks)
+* user configuration [dot-files](https://github.com/kernc/debfix#about-dot-files)
+* [debfix.py script](https://github.com/kernc/debfix#debfix-system-tweaks) for system-wide tweaks
+
+
+## Debfix System Tweaks
+
+With the help of 'common' files in `debfix` directory, `debfix.py` script
+sequentially prompts the user to:
+* (performance)
+    * [defer all DPkg triggers](http://raphaelhertzog.com/2011/05/30/trying-to-make-dpkg-triggers-more-useful-and-less-painful/)
+    * set 'noatime' flag on all `/etc/fstab` mounts
+    * apply sysctl optimizations (for a desktop workstation)
+* (convenience)
+    * set a [neat](http://http.debian.net/) sources.list (including deb-multimedia.org)
+    * set nice default synaptics config (should be part of dot-files if it weren't `/root`'s)
+    * set xorg.conf for synaptics touchpad with tapping and edge scrolling
+    * add tmpfs `/tmp` mount to `/etc/fstab` with `size=2G`
+    * add usbfs mount to `/etc/fstab` for VirtualBox (seems like not needed any more?)
+    * fix resume from hibernation issues
+    * disable (blacklist) PC-speaker
+    * install 'sections' of packages (defined in [debfix/debfix-packages.conf](https://github.com/kernc/debfix/blob/master/debfix/debfix-packages.conf))
+        * install appropriate VirtualBox Extension Pack
+        * track and pin the latest [iceweasel-esr](http://www.mozilla.org/en-US/firefox/organizations/) from mozilla.debian.org
+    * install latest TeamViewer
+    * install latest Skype
 
 
 ## About dot-files
@@ -59,28 +82,4 @@ Files and directories starting with `.` thus hold:
             * Tree Style Tab (for proper vertical hierarchical tabs)
             * X-notifier (for all of your Gmail et al. accounts)
             * for developers (FireBug & extensions, Links and Forms, TamperData, View Dependencies, View Frames, WebDeveloper)
-
-
-## Debfix System Tweaks
-
-With the help of 'common' files in `debfix` directory, `debfix.py` script
-sequentially prompts the user to:
-* (performance)
-    * [defer all DPkg triggers](http://raphaelhertzog.com/2011/05/30/trying-to-make-dpkg-triggers-more-useful-and-less-painful/)
-    * set 'noatime' flag on all `/etc/fstab` mounts
-    * apply sysctl optimizations (for a desktop workstation)
-* (convenience)
-    * set a [neat](http://http.debian.net/) sources.list (including deb-multimedia.org)
-    * set nice default synaptics config (should be part of dot-files if it weren't `/root`'s)
-    * set xorg.conf for synaptics touchpad with tapping and edge scrolling
-    * add tmpfs `/tmp` mount to `/etc/fstab` with `size=2G`
-    * add usbfs mount to `/etc/fstab` for VirtualBox (seems like not needed any more?)
-    * fix `/etc/initramfs-tools/conf.d/resume` so that resume from hibernation works
-    * disable (blacklist) PC-speaker
-    * install 'sections' of packages (defined in [debfix/debfix-packages.conf](https://github.com/kernc/debfix/blob/master/debfix/debfix-packages.conf))
-        * install appropriate VirtualBox Extension Pack
-        * track and pin the latest [iceweasel-esr](http://www.mozilla.org/en-US/firefox/organizations/) from mozilla.debian.org
-    * install latest TeamViewer
-    * install latest Skype
-    
     
