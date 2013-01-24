@@ -1,13 +1,18 @@
 #!/bin/bash
 
-if [ "$#" != "2" ]; then
-  echo "Usage: changemac interface newmac"
+if [ "$#" < "1" ]; then
+  echo "Usage: changemac interface [newmac]"
   exit 1
 fi
 
 IF=$1
-MAC=$2
+if [ "$2" != "" ]; then
+  MAC=$2
+else  # random MAC
+  MAC=`tr -cd 0-9a-f < /dev/urandom | head -c 17 | sed 's/\(..\)./\1:/g'`
+fi
 
+echo "Old HWaddr: `sudo ifconfig $IF | grep HWaddr | grep -oP '[a-f0-9:]{17}'`"
 sudo ifconfig $IF down
 sudo ifconfig $IF hw ether $MAC
 sudo ifconfig $IF up
