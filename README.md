@@ -101,11 +101,11 @@ You unpack it with:
 $ unzip master.zip   # or
 $ tar -xvzf master.tar.gz
 ```
-Then
+Then:
 ```bash
 $ cd debfix-master
-$ python copy_dotfiles.py   # to copy dot-files to your $HOME, and
+$ python copy_dotfiles.py   # to copy dot-files to your $HOME,   and
 $ sudo python debfix.py     # to run the interactive tweaking script
 ```
 
-Please **let me know** if you experience any errors!
+Please **let me know** if you experience any issues!
