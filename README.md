@@ -48,7 +48,7 @@ provided default) on all prompts. Unattended is hugely untested, though. :-)
 You can easily copy the configuration dot-files to your `$HOME` with
 `copy_dotfiles.py` script.
 Files and directories starting with `.` thus hold:
-* a neat and useful [`.bashrc`](https://github.com/kernc/debfix/tree/master/.bashrc) with a nice $PS1 prompt
+* a neat and useful [`.bashrc`](https://github.com/kernc/debfix/tree/master/.bashrc) with a nice `$PS1` prompt
 * some gathered `.fonts`
 * some gathered scripts in [`.local/bin`](https://github.com/kernc/debfix/tree/master/.local/bin)
 * cross-session autostart (devilspie, tilda, disable tapping while typing, disable alert, ...)
@@ -63,8 +63,8 @@ Files and directories starting with `.` thus hold:
     * **evince**
     * **Geany** (config and nice dark syntax highlighting for [some languages](https://github.com/kernc/debfix/blob/master/.config/geany/filedefs))
     * **GiMP** (a couple of custom keybinings)
-    * **IPython** (default profile more shell-like & default `__future__` & scientific imports ...)
-    * **Mousepad** (smaller font)
+    * **IPython** (default profile more shell-like & default `__future__.division` & scientific imports ...)
+    * **Mousepad** (8px font)
     * **Pidgin** (prefs, custom smileys)
     * **qBittorrent** (lite interface & solid settings)
     * **SpeedCrunch**
@@ -75,7 +75,7 @@ Files and directories starting with `.` thus hold:
     * **Mozilla Firefox** (and Iceweasel)
         * look & feel (window, context menu)
         * about:config prefs
-        * extensions anyone should have*
+        * **extensions** anyone should have:
             * Adblock Plus
             * Custom Buttons (have JavaScript-run buttons on your chrome)
             * dictionaries (Slovene, English)
@@ -89,4 +89,23 @@ Files and directories starting with `.` thus hold:
             * Tree Style Tab (for proper vertical hierarchical tabs)
             * X-notifier (for all of your Gmail et al. accounts)
             * for developers (Firebug, Links & Forms, TamperData, View Deps, View Frames, WebDeveloper)
-    
+
+## Installation instructions
+
+You can download the latest version in a
+[.zip](https://github.com/kernc/debfix/archive/master.zip) or
+[.tar.gz](https://github.com/kernc/debfix/archive/master.tar.gz) format.
+
+You unpack it with:
+```bash
+$ unzip master.zip   # or
+$ tar -xvzf master.tar.gz
+```
+Then
+```bash
+$ cd debfix-master
+$ python copy_dotfiles.py   # to copy dot-files to your $HOME, and
+$ sudo python debfix.py     # to run the interactive tweaking script
+```
+
+Please **let me know** if you experience any errors!
