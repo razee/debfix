@@ -24,7 +24,7 @@ sequentially prompts the user to:
     * apply [sysctl optimizations](https://github.com/kernc/debfix/blob/master/debfix/etc_sysctl.d_debfix-desktop-performance.conf) (for a desktop workstation)
         * also [increase sampling_down_factor](http://forums.gentoo.org/viewtopic-p-6682533.html?sid=a180868bde5a91214fcf7a12e43770c6#6682533) of ondemand CPU governor
 * (convenience)
-    * set a [neat](http://http.debian.net/) (**Debian only**) sources.list (including deb-multimedia.org)
+    * set a [neat](http://http.debian.net/) ( **Debian only** ) sources.list (including deb-multimedia.org)
     * set nice default Synaptic config (should be part of dot-files if it weren't `/root`'s)
     * enable tapping and edge scrolling for touchpads (by xorg.conf rule)
     * add tmpfs `/tmp` mount to `/etc/fstab` with `size=2G` (—is it better to set TMP_SIZE in `/etc/default/tmpfs`??)
@@ -56,23 +56,23 @@ Files and directories starting with `.` thus hold:
 * Xfce4 (currently gtk-2.0 only) and xfwm4 `.themes`
 * additional configuration is included for, but not limited to:
     * **Audacious** (..., [yaxamp skin](http://www.allwinampskins.com/yaxamp.wsz))
-    * *devilspie*
+    * **devilspie**
         * hide audacious from taskbar (status icon in notification area is enough)
         * minimal-sized skype call windows
         * sticky Pidgin conversations, Firefox, and Geany
-    * *evince*
-    * *Geany* (config and nice dark syntax highlighting for [some languages](https://github.com/kernc/debfix/blob/master/.config/geany/filedefs))
-    * *GiMP* (a couple of custom keybinings)
-    * *IPython* (default profile more shell-like & default `__future__` & scientific imports ...)
-    * *Mousepad* (smaller font)
-    * *Pidgin* (prefs, custom smileys)
-    * *qBittorrent* (lite interface & solid settings)
-    * *SpeedCrunch*
-    * *Thunar* (small icons, toolbar-style location, custom actions)
-    * *tilda*: drop-down, quake-like terminal (set on (my) 'cedilla' key, above Tab)
-    * *Xfce4* (solid settings for novices (optional [windows look](https://github.com/kernc/debfix/blob/master/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml.windows)) & pros)
-    * *xfce4-terminal* (small font, large scrollback history, no auto scrolling)
-    * *Mozilla Firefox* (and Iceweasel)
+    * **evince**
+    * **Geany** (config and nice dark syntax highlighting for [some languages](https://github.com/kernc/debfix/blob/master/.config/geany/filedefs))
+    * **GiMP** (a couple of custom keybinings)
+    * **IPython** (default profile more shell-like & default `__future__` & scientific imports ...)
+    * **Mousepad** (smaller font)
+    * **Pidgin** (prefs, custom smileys)
+    * **qBittorrent** (lite interface & solid settings)
+    * **SpeedCrunch**
+    * **Thunar** (small icons, toolbar-style location, custom actions)
+    * **tilda**: drop-down, quake-like terminal (set on (my) 'cedilla' key, above Tab)
+    * **Xfce4** (solid settings for novices (optional [windows look](https://github.com/kernc/debfix/blob/master/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml.windows)) & pros)
+    * **xfce4-terminal** (small font, large scrollback history, no auto scrolling)
+    * **Mozilla Firefox** (and Iceweasel)
         * look & feel (window, context menu)
         * about:config prefs
         * extensions anyone should have*
