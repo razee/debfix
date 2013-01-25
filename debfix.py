@@ -39,7 +39,7 @@ def run(cmd, pipe=False):
   return 0 == subprocess.call(cmd, shell=True)
 
 """Function beginning with 'do_' are the action functions that perform
-changes. Their __doc__ is the 'question' for the user_choice."""
+changes. Their __doc__ is the 'question' for the user_choice()."""
 
 def do_copy_apt_config_no_triggers():
   """Optimize performance of apt by defering DPkg triggers"""
@@ -184,7 +184,7 @@ def _apt_install_packages(marked):
   # POST
   if 'virtualbox' in marked['sections']:
     version = re.search('^[0-9]+\.[0-9]+\.[0-9]+', run('VBoxManage -v', pipe=True).split('\n')[-2]).group()
-    run('cd /tmp '
+    run('cd /tmp '  # TODO: see Skype TODO
         '&& wget http://download.virtualbox.org/virtualbox/{version}/Oracle_VM_VirtualBox_Extension_Pack-{version}.vbox-extpack '
         '&& VBoxManage extpack install /tmp/Oracle_VM_VirtualBox_Extension_Pack-{version}.vbox-extpack'.format(version=version))
 
