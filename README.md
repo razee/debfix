@@ -55,7 +55,7 @@ Files and directories starting with `.` thus hold:
 * custom [XDG user directories](https://github.com/kernc/debfix/blob/master/.config/user-dirs.dirs)
 * Xfce4 (currently gtk-2.0 only) and xfwm4 `.themes`
 * additional configuration is included for, but not limited to:
-    * *Audacious* (..., [yaxamp skin](http://www.allwinampskins.com/yaxamp.wsz))
+    * **Audacious** (..., [yaxamp skin](http://www.allwinampskins.com/yaxamp.wsz))
     * *devilspie*
         * hide audacious from taskbar (status icon in notification area is enough)
         * minimal-sized skype call windows
