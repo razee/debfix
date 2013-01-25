@@ -4,9 +4,9 @@
 # source bash_completion if not already
 [ ! $BASH_COMPLETION_COMPAT_DIR ] &&
   ! shopt -oq posix &&
-    ( [ -f /usr/share/bash-completion/bash_completion ] &&
-      . /usr/share/bash-completion/bash_completion )    ||
-    ( [ -f /etc/bash_completion ] && . /etc/bash_completion )
+    [ -f /usr/share/bash-completion/bash_completion ] &&
+      . /usr/share/bash-completion/bash_completion    ||
+    [ -f /etc/bash_completion ] && . /etc/bash_completion
 
 PATH=$HOME/.local/bin:$PATH
 
