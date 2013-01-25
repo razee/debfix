@@ -1,85 +1,92 @@
-# debfix - dotfiles and tweaks
+# [debfix](https://github.com/kernc/debfix) — dot-files and tweaks
 
 ## Tweaks for Debian (or derivative) GNU/Linux distribution
 
-This repository consists mostly of dot-files for a swell Xfce-based experience
+This repository consists mostly of **dot-files for a swell Xfce-based experience**
 and some administrative scripts that increase the performance and convenience
 of GNU/Linux as a desktop environment. In other words, this repository should
-contain all that I need to turn a vanilla install (of mainly Debian or
-Debian-based) into my mom's favorite OS.
+contain **all that is needed to turn a vanilla Debian** Xfce install (or
+similar, YMMV) **into my and mom's favorite OS**.
 
 It it comprised of two parts:
 * user configuration [dot-files](https://github.com/kernc/debfix#about-dot-files)
 * [debfix.py script](https://github.com/kernc/debfix#debfix-system-tweaks) for system-wide tweaks
 
+Any feedback, suggestions, bugs, fixes, requests and ideas are welcome!
 
 ## Debfix System Tweaks
 
-With the help of 'common' files in `debfix` directory, `debfix.py` script
+Using the 'template' files in `debfix` directory, `debfix.py` script 
 sequentially prompts the user to:
 * (performance)
-    * [defer all DPkg triggers](http://raphaelhertzog.com/2011/05/30/trying-to-make-dpkg-triggers-more-useful-and-less-painful/)
-    * set 'noatime' flag on all `/etc/fstab` mounts
-    * apply sysctl optimizations (for a desktop workstation)
+    * [defer all DPkg triggers](http://raphaelhertzog.com/2011/05/30/trying-to-make-dpkg-triggers-more-useful-and-less-painful/) until the very end of installation
+    * set 'noatime' flag on all `/etc/fstab` mounts (—is it OK to set it on ALL mounts?)
+    * apply [sysctl optimizations](https://github.com/kernc/debfix/blob/master/debfix/etc_sysctl.d_debfix-desktop-performance.conf) (for a desktop workstation)
+        * also increase sampling_down_factor of ondemand CPU governor
 * (convenience)
-    * set a [neat](http://http.debian.net/) sources.list (including deb-multimedia.org)
-    * set nice default synaptics config (should be part of dot-files if it weren't `/root`'s)
-    * set xorg.conf for synaptics touchpad with tapping and edge scrolling
-    * add tmpfs `/tmp` mount to `/etc/fstab` with `size=2G`
-    * add usbfs mount to `/etc/fstab` for VirtualBox (seems like not needed any more?)
+    * set a [neat](http://http.debian.net/) (**Debian only**) sources.list (including deb-multimedia.org)
+    * set nice default Synaptic config (should be part of dot-files if it weren't `/root`'s)
+    * enable tapping and edge scrolling for touchpads (by xorg.conf rule)
+    * add tmpfs `/tmp` mount to `/etc/fstab` with `size=2G` (—is it better to set TMP_SIZE in `/etc/default/tmpfs`??)
+    * add usbfs mount to `/etc/fstab` for VirtualBox (—seems like not needed anymore?)
     * fix resume from hibernation issues
     * disable (blacklist) PC-speaker
     * install 'sections' of packages (defined in [debfix/debfix-packages.conf](https://github.com/kernc/debfix/blob/master/debfix/debfix-packages.conf))
-        * install appropriate VirtualBox Extension Pack
-        * track and pin the latest [iceweasel-esr](http://www.mozilla.org/en-US/firefox/organizations/) from mozilla.debian.org
-    * install latest TeamViewer
+        * install appropriate VirtualBox Extension Pack (only if 'virtualbox' section is selected)
+        * track and pin the latest [iceweasel-esr](http://www.mozilla.org/en-US/firefox/organizations/) (only if 'mozilla' section is selected)
+    * install latest TeamViewer (currently with a low-risk but open symlink attack vector :-) )
     * install latest Skype
+
+Further details revealed with inspection of related `do_*` functions in the script.
+
+You can suppy `-y` or `--assume-yes` to the script to choose 'yes' (or other
+provided default) on all prompts. Unattended is hugely untested, though. :-)
 
 
 ## About dot-files
 
 You can easily copy the configuration dot-files to your `$HOME` with
 `copy_dotfiles.py` script.
-
 Files and directories starting with `.` thus hold:
-* a nice and useful [`.bashrc`](https://github.com/kernc/debfix/tree/master/.bashrc)
+* a neat and useful [`.bashrc`](https://github.com/kernc/debfix/tree/master/.bashrc) with a nice $PS1 prompt
 * some gathered `.fonts`
 * some gathered scripts in [`.local/bin`](https://github.com/kernc/debfix/tree/master/.local/bin)
-* autostart (devilspie, tilda, disable tapping while typing, disable alert, ...)
+* cross-session autostart (devilspie, tilda, disable tapping while typing, disable alert, ...)
 * custom [XDG user directories](https://github.com/kernc/debfix/blob/master/.config/user-dirs.dirs)
 * Xfce4 (currently gtk-2.0 only) and xfwm4 `.themes`
 * additional configuration is included for, but not limited to:
-    * Audacious (..., [yaxamp skin](http://www.allwinampskins.com/yaxamp.wsz))
-    * devilspie
+    * *Audacious* (..., [yaxamp skin](http://www.allwinampskins.com/yaxamp.wsz))
+    * *devilspie*
         * hide audacious from taskbar (status icon in notification area is enough)
         * minimal-sized skype call windows
         * sticky Pidgin conversations, Firefox, and Geany
-    * evince
-    * Geany (config and nice dark syntax highlighting for [some languages](https://github.com/kernc/debfix/blob/master/.config/geany/filedefs))
-    * GiMP (a couple of custom keybinings)
-    * IPython (default profile more shell-like & default `__future__` & scientific imports ...)
-    * Mousepad (smaller font)
-    * Pidgin (prefs, custom smileys (some localized to sl, sorry))
-    * qBittorrent (lite interface & solid settings)
-    * SpeedCrunch
-    * Thunar (small icons, toolbar-style location, custom actions)
-    * tilda: drop-down, quake-like terminal (on (my) 'cedilla' key, above Tab)
-    * Xfce4 (solid settings for novices ([windows look](https://github.com/kernc/debfix/blob/master/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml.windows)) & pros)
-    * xfce4-terminal (small font, large scrollback history, no auto scrolling)
-    * Mozilla Firefox (and Iceweasel)
+    * *evince*
+    * *Geany* (config and nice dark syntax highlighting for [some languages](https://github.com/kernc/debfix/blob/master/.config/geany/filedefs))
+    * *GiMP* (a couple of custom keybinings)
+    * *IPython* (default profile more shell-like & default `__future__` & scientific imports ...)
+    * *Mousepad* (smaller font)
+    * *Pidgin* (prefs, custom smileys)
+    * *qBittorrent* (lite interface & solid settings)
+    * *SpeedCrunch*
+    * *Thunar* (small icons, toolbar-style location, custom actions)
+    * *tilda*: drop-down, quake-like terminal (set on (my) 'cedilla' key, above Tab)
+    * *Xfce4* (solid settings for novices (optional [windows look](https://github.com/kernc/debfix/blob/master/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml.windows)) & pros)
+    * *xfce4-terminal* (small font, large scrollback history, no auto scrolling)
+    * *Mozilla Firefox* (and Iceweasel)
         * look & feel (window, context menu)
         * about:config prefs
         * extensions anyone should have*
             * Adblock Plus
-            * Custom Buttons (for JavaScript-run buttons on your chrome)
+            * Custom Buttons (have JavaScript-run buttons on your chrome)
             * dictionaries (Slovene, English)
             * Dictionary Lookup Extension
             * Greasemonkey
             * Image Zoom
-            * keyconfig (to remap annoying Ctrl+Q)
+            * keyconfig (to remap annoying Ctrl+Q etc.)
             * NoScript
             * Text Link
+            * Textarea Cache (never again lose your lengthy forum post)
             * Tree Style Tab (for proper vertical hierarchical tabs)
             * X-notifier (for all of your Gmail et al. accounts)
-            * for developers (FireBug & extensions, Links and Forms, TamperData, View Dependencies, View Frames, WebDeveloper)
+            * for developers (Firebug, Links & Forms, TamperData, View Deps, View Frames, WebDeveloper)
     
