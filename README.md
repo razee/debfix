@@ -22,7 +22,7 @@ sequentially prompts the user to:
     * [defer all DPkg triggers](http://raphaelhertzog.com/2011/05/30/trying-to-make-dpkg-triggers-more-useful-and-less-painful/) until the very end of installation
     * set 'noatime' flag on all `/etc/fstab` mounts (—is it OK to set it on ALL mounts?)
     * apply [sysctl optimizations](https://github.com/kernc/debfix/blob/master/debfix/etc_sysctl.d_debfix-desktop-performance.conf) (for a desktop workstation)
-        * also increase sampling_down_factor of ondemand CPU governor
+        * also [increase sampling_down_factor](http://forums.gentoo.org/viewtopic-p-6682533.html?sid=a180868bde5a91214fcf7a12e43770c6#6682533) of ondemand CPU governor
 * (convenience)
     * set a [neat](http://http.debian.net/) (**Debian only**) sources.list (including deb-multimedia.org)
     * set nice default Synaptic config (should be part of dot-files if it weren't `/root`'s)
