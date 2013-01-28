@@ -55,7 +55,7 @@ Files and directories starting with `.` thus hold:
 * some gathered scripts in [`.local/bin`](https://github.com/kernc/debfix/tree/master/.local/bin)
 * cross-session autostart (devilspie, tilda, disable tapping while typing, disable alert, ...)
 * custom [XDG user directories](https://github.com/kernc/debfix/blob/master/.config/user-dirs.dirs)
-* Xfce4 (currently gtk-2.0 only) and xfwm4 `.themes`, [gnome-human-icon-theme](https://www.google.com/search?q=%28gnome-human+OR+humanity%29+icon-theme&tbm=isch) default
+* Xfce4 (currently gtk-2.0 only) and xfwm4 `.themes` (specifically, modified Xfce-orange and Microcurve), [gnome-human-icon-theme](https://www.google.com/search?q=%28gnome-human+OR+humanity%29+icon-theme&tbm=isch) default
 * additional configuration is included for, but not limited to:
     * **Audacious** (..., [yaxamp skin](http://www.allwinampskins.com/yaxamp.wsz))
     * **devilspie**
