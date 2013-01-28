@@ -115,7 +115,7 @@ Please **let me know** if you experience any issues!
 
 ## Screenshots
 
-Hower mouse for caption:
+Hover mouse for caption:
 
 ![xfce4-terminal & visible part of .bashrc](https://github.com/kernc/debfix/raw/master/debfix/github-screenshots/bashrc.png "xfce4-terminal & visible part of .bashrc")
 
