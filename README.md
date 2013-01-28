@@ -119,6 +119,8 @@ Hover mouse for caption:
 
 ![xfce4-terminal & visible part of .bashrc](https://github.com/kernc/debfix/raw/master/debfix/github-screenshots/bashrc.png "xfce4-terminal & visible part of .bashrc")
 
+![Windows-like Xfce desktop](https://github.com/kernc/debfix/raw/master/debfix/github-screenshots/desktop.png "'Windows-like' Xfce desktop")
+
 ![Firefox/Iceweasel look&feel](https://github.com/kernc/debfix/raw/master/debfix/github-screenshots/firefox.png "Firefox/Iceweasel look&feel")
 
 ![Geany IDE/editor](https://github.com/kernc/debfix/raw/master/debfix/github-screenshots/geany.png "Geany IDE/editor")
