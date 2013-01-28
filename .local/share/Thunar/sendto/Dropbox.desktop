@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Encoding=UTF-8
+Exec=sh -c "ln -s %f $HOME/Dropbox/"
+Icon=/usr/share/icons/hicolor/16x16/apps/dropbox.png
+Name=Dropbox
