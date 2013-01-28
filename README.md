@@ -1,6 +1,6 @@
 # [debfix](https://github.com/kernc/debfix) — dot-files and tweaks
 
-## Tweaks for Debian (or derivative) GNU/Linux distribution
+## Tweaks for Debian (or [derivative](http://futurist.se/gldt/)) GNU/Linux distribution
 
 This repository consists mostly of **dot-files for a swell Xfce-based experience**
 and some administrative scripts that increase the performance and convenience
@@ -20,15 +20,15 @@ Using the 'template' files in `debfix` directory, `debfix.py` script
 sequentially prompts the user to:
 * (performance)
     * [defer all DPkg triggers](http://raphaelhertzog.com/2011/05/30/trying-to-make-dpkg-triggers-more-useful-and-less-painful/) until the very end of installation
-    * set 'noatime' flag on all `/etc/fstab` mounts (—is it OK to set it on ALL mounts?)
+    * set 'noatime' flag on all `/etc/fstab` mounts (—[is it OK to set it on ALL mounts?](https://github.com/kernc/debfix/issues))
     * apply [sysctl optimizations](https://github.com/kernc/debfix/blob/master/debfix/etc_sysctl.d_debfix-desktop-performance.conf) (for a desktop workstation)
         * also [increase sampling_down_factor](http://forums.gentoo.org/viewtopic-p-6682533.html?sid=a180868bde5a91214fcf7a12e43770c6#6682533) of ondemand CPU governor
 * (convenience)
     * set a [neat](http://http.debian.net/) ( **Debian only** ) sources.list (including deb-multimedia.org)
     * set nice default Synaptic config (should be part of dot-files if it weren't `/root`'s)
     * enable tapping and edge scrolling for touchpads (by xorg.conf rule)
-    * add tmpfs `/tmp` mount to `/etc/fstab` with `size=2G` (—is it better to set TMP_SIZE in `/etc/default/tmpfs`??)
-    * add usbfs mount to `/etc/fstab` for VirtualBox (—seems like not needed anymore?)
+    * add tmpfs `/tmp` mount to `/etc/fstab` with `size=2G` (—[is it better to set TMP_SIZE in `/etc/default/tmpfs`??](https://github.com/kernc/debfix/issues))
+    * add usbfs mount to `/etc/fstab` for VirtualBox (—[seems like not needed anymore?](https://github.com/kernc/debfix/issues))
     * fix resume from hibernation issues
     * disable (blacklist) PC-speaker
     * install 'sections' of packages (defined in [debfix/debfix-packages.conf](https://github.com/kernc/debfix/blob/master/debfix/debfix-packages.conf))
@@ -36,7 +36,7 @@ sequentially prompts the user to:
             * if you need a severely [optimized, minimal WinXP VDI image](https://mega.co.nz/#!MdhgjTxS!R9LTwkfBqbYN6Ku2Kx73qmX5ALhLvMvMSUAhTR5AS1o) (1.1GB),
               the password is —kind of like most Microsoft products today— necessary evil.
         * track and pin the latest [iceweasel-esr](http://www.mozilla.org/en-US/firefox/organizations/) (only if 'mozilla' section is selected)
-    * install latest TeamViewer (currently with a low-risk but open symlink attack vector :-) )
+    * install latest TeamViewer (currently with a low-risk but [open symlink attack vector](https://github.com/kernc/debfix/issues) :-) )
     * install latest Skype
 
 Further details revealed with inspection of related `do_*` functions in the script.
@@ -111,3 +111,20 @@ $ sudo python debfix.py     # to run the interactive tweaking script
 ```
 
 Please **let me know** if you experience any issues!
+
+
+## Screenshots
+
+Hower mouse for caption:
+
+![xfce4-terminal & visible part of .bashrc](https://github.com/kernc/debfix/raw/master/debfix/github-screenshots/bashrc.png "xfce4-terminal & visible part of .bashrc")
+
+![Firefox/Iceweasel look&feel](https://github.com/kernc/debfix/raw/master/debfix/github-screenshots/firefox.png "Firefox/Iceweasel look&feel")
+
+![Geany IDE/editor](https://github.com/kernc/debfix/raw/master/debfix/github-screenshots/geany.png "Geany IDE/editor")
+
+![qBittorrent "lite"](https://github.com/kernc/debfix/raw/master/debfix/github-screenshots/qbittorrent.png "qBittorrent 'lite'")
+
+![Pidgin custom smileys](https://github.com/kernc/debfix/raw/master/debfix/github-screenshots/pidgin-smileys.png "Pidgin custom smileys")
+
+
