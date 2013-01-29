@@ -26,7 +26,7 @@ user_pref("browser.places.smartBookmarksVersion", 4);
 user_pref("browser.preferences.advanced.selectedTabIndex", 3);
 user_pref("browser.rights.3.shown", true);
 user_pref("browser.search.defaultenginename", "Google");
-user_pref("browser.search.defaulturl", "http://www.google.com/search?q=");
+user_pref("browser.search.defaulturl", "https://www.google.com/search?q=");
 user_pref("browser.showQuitWarning", true);
 user_pref("browser.startup.page", 3);
 user_pref("browser.tabs.animate", false);
@@ -123,9 +123,9 @@ user_pref("keyconfig.main.viewBookmarksSidebarKb", "!][][");
 user_pref("keyconfig.main.web-developer-view-response-headers-key", "control shift][H][");
 user_pref("keyconfig.main.webdeveloper-disable-styles-key", "!][][");
 
-user_pref("keyword.URL", "http://www.google.com/search?q=");
+user_pref("keyword.URL", "https://www.google.com/search?q=");
 user_pref("network.cookie.prefsMigrated", true);
-user_pref("network.proxy.no_proxies_on", "localhost, 127.0.0.1, google.com, gmail.com");
+user_pref("network.proxy.no_proxies_on", "localhost, 127.0.0.1, .google.com, .gmail.com");
 
 user_pref("noscript.ABE.migration", 1);
 user_pref("noscript.allowURLBarJS", true);
