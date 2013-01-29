@@ -19,23 +19,31 @@ Any feedback, suggestions, bugs, fixes, requests and ideas are welcome!
 Using the 'template' files in `debfix` directory, `debfix.py` script 
 sequentially prompts the user to:
 * (performance)
-    * [defer all DPkg triggers](http://raphaelhertzog.com/2011/05/30/trying-to-make-dpkg-triggers-more-useful-and-less-painful/) until the very end of installation
+    * [defer all DPkg triggers](http://raphaelhertzog.com/2011/05/30/trying-to-make-dpkg-triggers-more-useful-and-less-painful/)
+      until the end of installation process, when installing packages with apt
     * set 'noatime' flag on all `/etc/fstab` mounts (—[is it OK to set it on ALL mounts?](https://github.com/kernc/debfix/issues))
-    * apply [sysctl optimizations](https://github.com/kernc/debfix/blob/master/debfix/etc_sysctl.d_debfix-desktop-performance.conf) (for a desktop workstation)
-        * also [increase sampling_down_factor](http://forums.gentoo.org/viewtopic-p-6682533.html?sid=a180868bde5a91214fcf7a12e43770c6#6682533) of ondemand CPU governor
+    * apply [sysctl optimizations](https://github.com/kernc/debfix/blob/master/debfix/etc_sysctl.d_debfix-desktop-performance.conf)
+      (for a desktop workstation)
+        * also [increase sampling_down_factor](http://forums.gentoo.org/viewtopic-p-6682533.html?sid=a180868bde5a91214fcf7a12e43770c6#6682533)
+          of ondemand CPU governor
 * (convenience)
-    * set a [neat](http://http.debian.net/) ( **Debian only** ) sources.list (including deb-multimedia.org)
+    * set a [neat](http://http.debian.net/) ( **Debian only** )
+      sources.list (including deb-multimedia.org)
     * set nice default Synaptic config (should be part of dot-files if it weren't `/root`'s)
     * enable tapping and edge scrolling for touchpads (by xorg.conf rule)
-    * add tmpfs `/tmp` mount to `/etc/fstab` with `size=2G` (—[is it better to set TMP_SIZE in `/etc/default/tmpfs`??](https://github.com/kernc/debfix/issues))
-    * add usbfs mount to `/etc/fstab` for VirtualBox (—[seems like not needed anymore?](https://github.com/kernc/debfix/issues))
+    * add tmpfs `/tmp` mount to `/etc/fstab` with `size=2G`
+      (—[is it better to set TMP_SIZE in `/etc/default/tmpfs`??](https://github.com/kernc/debfix/issues))
+    * add usbfs mount to `/etc/fstab` for VirtualBox
+      (—[seems like not needed anymore?](https://github.com/kernc/debfix/issues))
     * fix resume from hibernation issues
     * disable (blacklist) PC-speaker
-    * install 'sections' of packages (defined in [debfix/debfix-packages.conf](https://github.com/kernc/debfix/blob/master/debfix/debfix-packages.conf))
+    * install 'sections' of packages (defined in
+      [debfix/debfix-packages.conf](https://github.com/kernc/debfix/blob/master/debfix/debfix-packages.conf))
         * install appropriate VirtualBox Extension Pack (only if 'virtualbox' section is selected)
-            * if you need a severely [optimized, minimal WinXP VDI image](https://mega.co.nz/#!MdhgjTxS!R9LTwkfBqbYN6Ku2Kx73qmX5ALhLvMvMSUAhTR5AS1o) (1.1GB),
-              the password is —kind of like most Microsoft products today— necessary evil.
-        * track and pin the latest [iceweasel-esr](http://www.mozilla.org/en-US/firefox/organizations/) (only if 'mozilla' section is selected)
+            * if you need a severely [optimized, minimal WinXP VDI image](https://mega.co.nz/#!MdhgjTxS!R9LTwkfBqbYN6Ku2Kx73qmX5ALhLvMvMSUAhTR5AS1o)
+              (1.1GB), the password is —kind of like the Microsoft products— necessary evil.
+        * track and pin the latest [iceweasel-esr](http://www.mozilla.org/en-US/firefox/organizations/)
+          (only if 'mozilla' section is selected)
     * install latest TeamViewer (currently with a low-risk but [open symlink attack vector](https://github.com/kernc/debfix/issues) :-) )
     * install latest Skype
 
@@ -50,12 +58,14 @@ provided default) on all prompts. Unattended is hugely untested, though. :-)
 You can easily copy the configuration dot-files to your `$HOME` with
 `copy_dotfiles.py` script.
 Files and directories starting with `.` thus hold:
-* a neat and useful [`.bashrc`](https://github.com/kernc/debfix/tree/master/.bashrc) with a nice `$PS1` prompt
+* a neat and useful [`.bashrc`](https://github.com/kernc/debfix/tree/master/.bashrc)
+  with a nice `$PS1` prompt
 * some gathered `.fonts`
 * some gathered scripts in [`.local/bin`](https://github.com/kernc/debfix/tree/master/.local/bin)
 * cross-session autostart (devilspie, tilda, disable tapping while typing, disable alert, ...)
 * custom [XDG user directories](https://github.com/kernc/debfix/blob/master/.config/user-dirs.dirs)
-* Xfce4 (currently gtk-2.0 only) and xfwm4 `.themes` (specifically, modified Xfce-orange and Microcurve), [gnome-human-icon-theme](https://www.google.com/search?q=%28gnome-human+OR+humanity%29+icon-theme&tbm=isch) default
+* Xfce4 (currently gtk-2.0 only) and xfwm4 `.themes` (specifically, modified Xfce-orange and Microcurve),
+  default [gnome-human-icon-theme](https://www.google.com/search?q=%28gnome-human+OR+humanity%29+icon-theme&tbm=isch)
 * additional configuration is included for, but not limited to:
     * **Audacious** (..., [yaxamp skin](http://www.allwinampskins.com/yaxamp.wsz))
     * **devilspie**
@@ -72,7 +82,8 @@ Files and directories starting with `.` thus hold:
     * **SpeedCrunch**
     * **Thunar** (small icons, toolbar-style location, custom actions)
     * **tilda**: drop-down, quake-like terminal (set on (my) 'cedilla' key, above Tab)
-    * **Xfce4** (solid settings for novices (optional [windows look](https://github.com/kernc/debfix/blob/master/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml.windows)) & pros)
+    * **Xfce4** (solid settings for novices (optional
+      [windows look](https://github.com/kernc/debfix/blob/master/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml.windows)) & pros)
     * **xfce4-terminal** (small font, large scrollback history, no auto scrolling)
     * **Mozilla Firefox** (and Iceweasel)
         * look & feel (window, context menu)
@@ -127,6 +138,6 @@ Hover mouse for caption:
 
 ![qBittorrent "lite"](https://github.com/kernc/debfix/raw/master/debfix/github-screenshots/qbittorrent.png "qBittorrent 'lite'")
 
-![Pidgin custom smileys](https://github.com/kernc/debfix/raw/master/debfix/github-screenshots/pidgin-smileys.png "Pidgin custom smileys")
+![Pidgin custom smileys to please your remote better half](https://github.com/kernc/debfix/raw/master/debfix/github-screenshots/pidgin-smileys.png "Pidgin custom smileys to please your remote better half")
 
 
