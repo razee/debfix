@@ -49,7 +49,7 @@ def do_copy_apt_config_no_triggers():
     log.warn('Failed to copy 99defer-triggers to /etc/apt/apt.conf.d')
 
 def do_copy_debian_sources_list():
-  """Set 'perfect' Debian /etc/apt/sources.list"""
+  """Set 'perfect' Debian-ONLY /etc/apt/sources.list"""
   release = 'wheezy'
   if not assume_yes:
     release = raw_input('Debian release to track (stable/sid/...) [{}]: '
