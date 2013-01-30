@@ -22,6 +22,8 @@ sequentially prompts the user to:
     * [defer all DPkg triggers](http://raphaelhertzog.com/2011/05/30/trying-to-make-dpkg-triggers-more-useful-and-less-painful/)
       until the end of installation process, when installing packages with apt
     * set 'noatime' flag on all `/etc/fstab` mounts (—[is it OK to set it on ALL mounts?](https://github.com/kernc/debfix/issues))
+    * mount `/tmp` as tmpfs (in `/etc/fstab`) with `size=2G`
+      (—[is it better to set TMP_SIZE in `/etc/default/tmpfs`??](https://github.com/kernc/debfix/issues))
     * apply [sysctl optimizations](https://github.com/kernc/debfix/blob/master/debfix/etc_sysctl.d_debfix-desktop-performance.conf)
       (for a desktop workstation)
         * also [increase sampling_down_factor](http://forums.gentoo.org/viewtopic-p-6682533.html?sid=a180868bde5a91214fcf7a12e43770c6#6682533)
@@ -31,8 +33,6 @@ sequentially prompts the user to:
       sources.list (including deb-multimedia.org)
     * set nice default Synaptic config (should be part of dot-files if it weren't `/root`'s)
     * enable tapping and edge scrolling for touchpads (by xorg.conf rule)
-    * add tmpfs `/tmp` mount to `/etc/fstab` with `size=2G`
-      (—[is it better to set TMP_SIZE in `/etc/default/tmpfs`??](https://github.com/kernc/debfix/issues))
     * add usbfs mount to `/etc/fstab` for VirtualBox
       (—[seems like not needed anymore?](https://github.com/kernc/debfix/issues))
     * fix resume from hibernation issues
