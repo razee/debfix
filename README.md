@@ -39,11 +39,11 @@ sequentially prompts the user to:
     * disable (blacklist) PC-speaker
     * install 'sections' of packages (defined in
       [debfix/debfix-packages.conf](https://github.com/kernc/debfix/blob/master/debfix/debfix-packages.conf))
-        * install appropriate VirtualBox Extension Pack (only if 'virtualbox' section is selected)
-            * if you need a severely [optimized, minimal WinXP VDI image](https://mega.co.nz/#!MdhgjTxS!R9LTwkfBqbYN6Ku2Kx73qmX5ALhLvMvMSUAhTR5AS1o)
-              (1.1GB), the password is —kind of like the Microsoft products— necessary evil.
-        * track and pin the latest [iceweasel-esr](http://www.mozilla.org/en-US/firefox/organizations/)
+        * track and pin the latest iceweasel-[esr](http://www.mozilla.org/en-US/firefox/organizations/)
           (only if 'mozilla' section is selected)
+        * install appropriate VirtualBox Extension Pack (only if 'virtualbox' section is selected)
+            * if you need a severely [optimized, minimal WinXP VDI image](http://goo.gl/QzLdf)
+              (1.1GB), the password is —kind of like the Microsoft products— necessary evil.
     * install latest TeamViewer (currently with a low-risk but [open symlink attack vector](https://github.com/kernc/debfix/issues) :-) )
     * install latest Skype
 
