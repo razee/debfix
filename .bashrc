@@ -3,18 +3,20 @@
 
 # source bash_completion if not already
 [ ! $BASH_COMPLETION_COMPAT_DIR ] &&
-  ! shopt -oq posix &&
-    [ -f /usr/share/bash-completion/bash_completion ] &&
-      . /usr/share/bash-completion/bash_completion    ||
+  if ! shopt -oq posix; then
+    [ -f /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion ||
     [ -f /etc/bash_completion ] && . /etc/bash_completion
+  fi
 
 PATH=$HOME/.local/bin:$PATH
 
 # nicely colored prompt
-PS1="█▊▋▌▍▎▏\[\e[34m\][\[\e[31m\]\t\[\e[34m\]]\[\e[33m\]:\[\e[0;38;40m\]\w "
-[ $EUID = 0 ] &&
-  PS1="${debian_chroot:+($debian_chroot)}\[\e[01;31;40m\]${PS1}\[\e[01;31m\]#\[\e[00m\] " ||
-  PS1="${debian_chroot:+($debian_chroot)}\[\e[01;33;40m\]${PS1}\[\e[01;33m\]\$\[\e[00m\] "
+PROMPT_DIRTRIM=4
+PS1="\[\e[1;33;40m\]█▊▋▌▍▎▏\[\e[34m\][\[\e[31m\]\t\[\e[34m\]]\[\e[1;33m\]:\[\e[0;38;40m\]\w \[\e[1;33m\]\$\[\e[0m\] "
+[ "$EUID" = "0" ] && PS1=${PS1//[1;33/[1;31}  # if root, make yellow red
+PS1="${debian_chroot:+($debian_chroot)}${PS1}"
+# ...with error reporting
+PS1="\`RET=\$? ; [ \"\$RET\" != \"0\" ] && echo \"\[\e[31;40m\]Err:\${RET}\[\e[0m\] \"\`${PS1}"
 
 alias whois='whois -H'
 alias more='less -R'
