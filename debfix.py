@@ -80,6 +80,17 @@ def do_copy_xorg_synaptics_config():
   else:
     log.warn('Failed to copy 50-synaptics.conf to /etc/X11/xorg.conf.d')
 
+def do_ensure_root_has_password():
+  """If you use sudo to root, root is without password, gksu may fail
+to approve your password (update-manager, unetbootin etc. from the menu
+may fail to start).
+Ensure root user has password"""
+  pass
+
+def do_set_sudoers_timestamp_timeout():
+  """Remember sudo password for 15 minutes"""
+  pass
+
 def do_set_noatime_in_fstab_mounts():
   """Filesystems may make **SEVERAL DIRK WRITES FOR EACH READ** operation
 as they update the access times of files and their parent directories!
