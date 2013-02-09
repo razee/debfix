@@ -41,14 +41,14 @@ def run(cmd, pipe=False):
 """Function beginning with 'do_' are the action functions that perform
 changes. Their __doc__ is the 'question' for the user_choice()."""
 
-def do_copy_apt_config_no_triggers():
+def do_0_copy_apt_config_no_triggers():
   """Optimize performance of apt by defering DPkg triggers"""
   if run('cp -v {}etc_apt_apt.conf.d_99defer-triggers /etc/apt/apt.conf.d/99defer-triggers'.format(data_dir)):
     log.info('Created /etc/apt/apt.conf.d/99defer-triggers')
   else:
     log.warn('Failed to copy 99defer-triggers to /etc/apt/apt.conf.d')
 
-def do_copy_debian_sources_list():
+def do_0_copy_debian_sources_list():
   """Set 'perfect' Debian-ONLY /etc/apt/sources.list"""
   release = 'wheezy'
   if not assume_yes:
@@ -72,7 +72,7 @@ def do_copy_synaptic_config():
   else:
     log.warn('Failed to move root_.synaptic_synaptic.conf to /root/.synaptic/synaptic.conf')
 
-def do_copy_xorg_synaptics_config():
+def do_20_copy_xorg_synaptics_config():
   """Set touchpad tap-to-click and edge scrolling"""
   if run('[ ! -d /etc/X11/xorg.conf.d ] && mkdir -v /etc/X11/xorg.conf.d ; '
          'cp -v {}etc_X11_xorg.conf.d_50-synaptics.conf /etc/X11/xorg.conf.d/50-synaptics.conf'.format(data_dir)):
@@ -80,7 +80,7 @@ def do_copy_xorg_synaptics_config():
   else:
     log.warn('Failed to copy 50-synaptics.conf to /etc/X11/xorg.conf.d')
 
-def do_ensure_sudo_mode():
+def do_20_ensure_sudo_mode():
   """If you use sudo, gksu may fail when running update-manager,
 unetbootin etc. from the menu (see bug http://bugs.debian.org/481689).
 gksu only fails if root user is without password (passwd -d root) or
@@ -94,7 +94,7 @@ Ensure sudo-mode is set"""
   else:
     log.warn('Failed to update-alternatives for libgksu-gconf-defaults')
 
-def do_disable_sudoers_tty_tickets():
+def do_20_disable_sudoers_tty_tickets():
   """Using sudo, you were supposed to only type the password in once every
 15 minutes. Unfortunately, each tty/pts session creates a separate
 timestamp which means that in practice you are asked to retype your
@@ -106,7 +106,7 @@ Disable tty_tickets in /etc/sudoers"""
   else:
     log.warn('Failed to disable tty_tickets. Hope your sudoers file is not broken. :-|')
 
-def do_add_user_to_fuse_group():
+def do_20_add_user_to_fuse_group():
   """FUSE (Filesystem in Userspace) requires the mounting user to be in
 fuse group. If anticipate to need fuse (or not), add user to fuse group"""
   user = run("echo $(cat /etc/passwd | grep ':1000:' | cut -d ':' -f 1 )", pipe=True).strip()
@@ -226,7 +226,7 @@ def _apt_install_packages(marked):
         '&& wget http://download.virtualbox.org/virtualbox/{version}/Oracle_VM_VirtualBox_Extension_Pack-{version}.vbox-extpack '
         '&& VBoxManage extpack install /tmp/Oracle_VM_VirtualBox_Extension_Pack-{version}.vbox-extpack'.format(version=version))
 
-def do_install_packages():
+def do_10_install_packages():
   """Install or remove packages (as per debfix/debfix-packages.conf"""
   from ConfigParser import RawConfigParser
   config = RawConfigParser(allow_no_value=True)
