@@ -88,9 +88,16 @@ c.InteractiveShellApp.exec_lines = [
   '%rehashx',
   '!fortune|cowsay',
   'from __future__ import division',
-  'import numpy as np',
-  'import matplotlib.pyplot as plt',
-  'np.set_printoptions(precision=4, suppress=True, linewidth=79)',
+  'import re, os',
+  '''
+try:
+  import numpy as np
+  np.set_printoptions(precision=4, suppress=True, linewidth=79)
+except ImportError: pass
+try:
+  import matplotlib.pyplot as plt
+except ImportError: pass
+''',
 ]
 
 # A list of dotted module names of IPython extensions to load.
@@ -183,7 +190,7 @@ c.TerminalInteractiveShell.deep_reload = True
 # c.TerminalInteractiveShell.screen_length = 0
 
 # Set the editor used by IPython (default to $EDITOR/vi/notepad).
-c.TerminalInteractiveShell.editor = 'geany'
+#c.TerminalInteractiveShell.editor = 'geany'
 
 #
 c.TerminalInteractiveShell.prompts_pad_left = False
@@ -335,11 +342,11 @@ c.TerminalInteractiveShell.xmode = 'Context'
 ## added from documentation
 c.PrefilterManager.multi_line_specials = True
 c.AliasManager.user_aliases = [
-  ('ls', 'ls --color=auto -F'),
-  ('la', 'ls -Al'),
+  ('ls', 'ls --color=always -F'),
+  ('la', 'ls -AlF'),
   ('ll', 'ls -lF'),
-  ('more', 'less -r'),
+  ('more', 'less -R'),
   ('whois', 'whois -H'),
-  ('grep', 'grep --color=auto'),
+  ('grep', 'grep --color=always'),
 ]
 #c.AliasManager.transform_alias('grep')
