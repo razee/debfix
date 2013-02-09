@@ -34,8 +34,10 @@ sequentially prompts the user to:
     * set nice default Synaptic config (should be part of dot-files if it weren't `/root`'s)
     * enable tapping and edge scrolling for touchpads (by xorg.conf rule)
     * add usbfs mount to `/etc/fstab` for VirtualBox
-      (—[seems like not needed anymore?](https://github.com/kernc/debfix/issues))
+      (—[seems like not needed anymore, sometimes?](https://github.com/kernc/debfix/issues))
+    * add user to `fuse` group
     * fix resume from hibernation issues
+    * make 'global' sudo sessions (`!tty_tickets`) and fix [gksu default sudo-mode bug](http://bugs.debian.org/481689)
     * disable (blacklist) PC-speaker
     * install 'sections' of packages (defined in
       [debfix/debfix-packages.conf](https://github.com/kernc/debfix/blob/master/debfix/debfix-packages.conf))

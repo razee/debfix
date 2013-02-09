@@ -80,16 +80,43 @@ def do_copy_xorg_synaptics_config():
   else:
     log.warn('Failed to copy 50-synaptics.conf to /etc/X11/xorg.conf.d')
 
-def do_ensure_root_has_password():
-  """If you use sudo to root, root is without password, gksu may fail
-to approve your password (update-manager, unetbootin etc. from the menu
-may fail to start).
-Ensure root user has password"""
-  pass
+def do_ensure_sudo_mode():
+  """If you use sudo, gksu may fail when running update-manager,
+unetbootin etc. from the menu (see bug http://bugs.debian.org/481689).
+gksu only fails if root user is without password (passwd -d root) or
+locked and if GConf key /apps/gksu/sudo-mode is not set.
+Ensure sudo-mode is set"""
+  if run('if passwd -S root | grep -E "NP|L" >/dev/null 2>&1; then '
+            'update-alternatives --set libgksu-gconf-defaults /usr/share/libgksu/debian/gconf-defaults.libgksu-sudo '
+            '&& update-gconf-defaults ; '
+         'fi'):
+    log.info('sudo-mode set via libgksu-gconf-defaults alternatives')
+  else:
+    log.warn('Failed to update-alternatives for libgksu-gconf-defaults')
 
-def do_set_sudoers_timestamp_timeout():
-  """Remember sudo password for 15 minutes"""
-  pass
+def do_disable_sudoers_tty_tickets():
+  """Using sudo, you were supposed to only type the password in once every
+15 minutes. Unfortunately, each tty/pts session creates a separate
+timestamp which means that in practice you are asked to retype your
+password far more often. If this bugs you, you can set a global per-user
+(instead of per tty session) timestamp ticket file.
+Disable tty_tickets in /etc/sudoers"""
+  if run("echo -e '\nDefaults\tinsults,!tty_tickets\n' >> /etc/sudoers"):
+    log.info("'Defaults insults,!tty_tickets' line added to /etc/sudoers")
+  else:
+    log.warn('Failed to disable tty_tickets. Hope your sudoers file is not broken. :-|')
+
+def do_add_user_to_fuse_group():
+  """FUSE (Filesystem in Userspace) requires the mounting user to be in
+fuse group. If anticipate to need fuse (or not), add user to fuse group"""
+  user = run("echo $(cat /etc/passwd | grep ':1000:' | cut -d ':' -f 1 )", pipe=True).strip()
+  if not assume_yes:
+    user = raw_input('User to add to fuse group (by default, user with gid 1000) [{}]: '
+                     .format(user)) or user
+  if run('adduser {} fuse'.format(user)):
+    log.info("User '{}' added to group 'fuse'".format(user))
+  else:
+    log.warn("Failed to add {} to 'fuse' group. Is fuse installed?".format(user))  
 
 def do_set_noatime_in_fstab_mounts():
   """Filesystems may make **SEVERAL DIRK WRITES FOR EACH READ** operation
