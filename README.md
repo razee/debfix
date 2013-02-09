@@ -37,7 +37,7 @@ sequentially prompts the user to:
       (—[seems like not needed anymore, sometimes?](https://github.com/kernc/debfix/issues))
     * add user to `fuse` group
     * fix resume from hibernation issues
-    * make 'global' sudo sessions (`!tty_tickets`) and fix [gksu default sudo-mode bug](http://bugs.debian.org/481689)
+    * make 'global' sudo sessions (instead of per-tty) and fix [gksu default sudo-mode bug](http://bugs.debian.org/481689)
     * disable (blacklist) PC-speaker
     * install 'sections' of packages (defined in
       [debfix/debfix-packages.conf](https://github.com/kernc/debfix/blob/master/debfix/debfix-packages.conf))
@@ -122,7 +122,10 @@ $ cd debfix-master
 $ python copy_dotfiles.py   # to copy dot-files to your $HOME,   and
 $ sudo python debfix.py     # to run the interactive tweaking script
 ```
-
+It's best to run in a virtual terminal (Ctrl+Alt+Fn) with a display manager
+screen 'hanging' on Ctrl+Alt+F7 instead of in a
+single-user (root) session as there are more services ensuring everything goes
+smoothly.
 Please **let me know** if you experience any issues!
 
 
