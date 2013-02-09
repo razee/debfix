@@ -39,7 +39,7 @@ c = get_config()
 # configuration (through profiles), history storage, etc. The default is usually
 # $HOME/.ipython. This options can also be specified through the environment
 # variable IPYTHON_DIR.
-# c.TerminalIPythonApp.ipython_dir = u'/home/jk/.config/ipython'
+# c.TerminalIPythonApp.ipython_dir = u'~/.config/ipython'
 
 # Whether to display a banner upon starting IPython.
 c.TerminalIPythonApp.display_banner = False
@@ -88,7 +88,7 @@ c.InteractiveShellApp.exec_lines = [
   '%rehashx',
   '!fortune|cowsay',
   'from __future__ import division',
-  'import re, os',
+  'import re, os, sys',
   '''
 try:
   import numpy as np
