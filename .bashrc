@@ -1,5 +1,6 @@
 
 [ `which fortune` ] && [ `which cowsay` ] && fortune | cowsay
+echo "Current time: `date --rfc-3339=seconds`"
 
 # source bash_completion if not already
 [ ! $BASH_COMPLETION_COMPAT_DIR ] &&
