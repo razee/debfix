@@ -177,6 +177,17 @@ def do_disable_pc_speaker():
   else:
     log.warn('Failed to blacklist pcspkr module')
 
+def do_fix_dns_before_mdns():
+  """Some public hotspots that implement "captive portal":wiki may not work
+because *.local domain isn't resolved correctly through mDNS, and then DNS is
+skipped. See the following page for more info:
+http://superuser.com/questions/355625/unable-to-resolve-foo-local-domain-names
+Apply the fix as per above link"""
+  if run("sudo sed -i.bak -r 's/^hosts:\s*(.*?)( mdns.*?) dns (.*)$/hosts:          \1 dns\2 \3/' /etc/nsswitch.conf"):
+    log.info('dns before mdns in /etc/nsswitch.conf; backed-up as nsswitch.conf.bak')
+  else:
+    log.warn('Failed to apply nsswitch fix')
+
 def do_improve_desktop_system_performance():
   """Improve desktop system performance by various kernel (sysctl) tweaks"""
   echo_sampling_down_factor = (
