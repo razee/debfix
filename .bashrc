@@ -33,5 +33,3 @@ alias b64d='base64 -d'
 
 export PAGER=less
 export LESS=-R
-export EDITOR=geany
-export VISUAL=geany
