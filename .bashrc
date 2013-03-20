@@ -17,7 +17,8 @@ PS1="\[\e[1;33;40m\]█▊▋▌▍▎▏\[\e[34m\][\[\e[31m\]\t\[\e[34m\]]\[\e[
 [ "$EUID" = "0" ] && PS1=${PS1//[1;33/[1;31}  # if root, make yellow red
 PS1="${debian_chroot:+($debian_chroot)}${PS1}"
 # ...with git branch reporting
-PS1="\`RET=\\\`git branch 2>/dev/null\\\` ; [ \"\$?\" == \"0\" ] && echo \"\[\e[36;40m\][git:\${RET}]\[\e[0m\]\"\`${PS1}"
+export GIT_PS1_SHOWDIRTYSTATE=1  # need git-completion.sh sourced for this method to work
+PS1="\`RET=\\\`type -t __git_ps1 > /dev/null && __git_ps1 | tr -d '() '\\\` ; [ \"\$RET\" != \"\" ] && echo \"\[\e[36;40m\][git:\${RET}]\[\e[0m\]\"\`${PS1}"
 # ...with error reporting (must be last 'plugin' in line so that it starts first)
 PS1="\`RET=\$? ; [ \"\$RET\" != \"0\" ] && echo \"\[\e[31;40m\][Err:\${RET}]\[\e[0m\]\"\`${PS1}"
 
@@ -33,3 +34,4 @@ alias b64d='base64 -d'
 
 export PAGER=less
 export LESS=-R
+
