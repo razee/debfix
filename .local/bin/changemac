@@ -1,18 +1,20 @@
 #!/bin/bash
 
-if [ "$#" < "1" ]; then
+if [ $# -lt 1 ]; then
   echo "Usage: changemac interface [newmac]"
   exit 1
 fi
 
-IF=$1
+IFACE=$1
 if [ "$2" != "" ]; then
   MAC=$2
-else  # random MAC
-  MAC=`tr -cd 0-9a-f < /dev/urandom | head -c 17 | sed 's/\(..\)./\1:/g'`
+else  # random MAC (that starts with even first byte! - unicast MAC address)
+  MAC=`tr -cd 02468ace < /dev/urandom | head -c 2 | sed 's/\(..\)./\1:/g'`:`tr -cd 0-9a-f < /dev/urandom | head -c 14 | sed 's/\(..\)./\1:/g'`
 fi
 
-echo "Old HWaddr: `sudo ifconfig $IF | grep HWaddr | grep -oP '[a-f0-9:]{17}'`"
-sudo ifconfig $IF down
-sudo ifconfig $IF hw ether $MAC
-sudo ifconfig $IF up
+echo Old HWaddr: `sudo ifconfig $IFACE | grep HWaddr | grep -oP '[a-f0-9:]{17}'`
+echo New HWaddr: $MAC
+
+sudo ifconfig $IFACE down
+sudo ifconfig $IFACE hw ether $MAC
+sudo ifconfig $IFACE up
