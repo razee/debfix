@@ -101,7 +101,7 @@ timestamp which means that in practice you are asked to retype your
 password far more often. If this bugs you, you can set a global per-user
 (instead of per tty session) timestamp ticket file.
 Disable tty_tickets in /etc/sudoers"""
-  if run("echo -e '\nDefaults\tinsults,!tty_tickets\n' >> /etc/sudoers"):
+  if run("echo '\nDefaults\tinsults,!tty_tickets\n' >> /etc/sudoers"):
     log.info("'Defaults insults,!tty_tickets' line added to /etc/sudoers")
   else:
     log.warn('Failed to disable tty_tickets. Hope your sudoers file is not broken. :-|')
