@@ -13,14 +13,14 @@ Text=mem
 [SL_Swap]
 Enabled=true
 Use_Label=false
-Color=#F0F000
+Color=#F03500
 Text=swap
 
 [SL_Uptime]
 Enabled=false
 
 [Main]
-Timeout=250
+Timeout=400
 Timeout_Seconds=1
 Use_Timeout_Seconds=true
 
