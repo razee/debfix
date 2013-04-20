@@ -216,9 +216,9 @@ def do_improve_desktop_system_performance():
   else:
     log.warn('Failed to create /etc/sysctl.d/debfix-desktop-performance.conf')
 
-def _apt_install_packages(marked):
+def _apt_install_packages(marked, second_time_around):
   # PRE
-  if 'mozilla' in marked['sections']:
+  if 'mozilla' in marked['sections'] and not second_time_around:
     run('[ ! -d /etc/apt/sources.list.d ] && mkdir /etc/apt/sources.list.d ; '
         'cp -v {}etc_apt_sources.list.d_experimental-iceweasel-esr.list /etc/apt/sources.list.d/experimental-iceweasel-esr.list'.format(data_dir))
     run('apt-get -q update')
@@ -264,6 +264,8 @@ def do_10_install_packages():
       break
   if user_choice('Install: {install}\nRemove: {remove}\nApply changes'.format(**marked)):
     _apt_install_packages(marked)
+    # due to assume-yes-based decisions, some packages may not be successfully installed (yet), retry
+    _apt_install_packages(marked, second_time_around=True)
   if user_choice('Upgrade all upgradable packages'):
     run('aptitude -y -q full-upgrade')
   run('aptitude -y -q clean')
