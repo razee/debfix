@@ -216,7 +216,7 @@ def do_improve_desktop_system_performance():
   else:
     log.warn('Failed to create /etc/sysctl.d/debfix-desktop-performance.conf')
 
-def _apt_install_packages(marked, second_time_around):
+def _apt_install_packages(marked, second_time_around=False):
   # PRE
   if 'mozilla' in marked['sections'] and not second_time_around:
     run('[ ! -d /etc/apt/sources.list.d ] && mkdir /etc/apt/sources.list.d ; '
